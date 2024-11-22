@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+actor Customer as U
+actor Admin as A
+
+rectangle "Libra"{
+    usecase "Log In" as Lo
+    usecase "Search" as Search
+    usecase "Borrow" as Borrow
+    usecase "Add Book" as Add
+    usecase "Return" as Return
+    usecase "Remove Book" as Remove
+    usecase "Delete User" as Delete
+    usecase "Add User" as New
+}
+
+U --> (Lo)
+U --> (Search)
+U --> (Borrow)
+U --> (Return)
+A -up-> (Lo)
+A -up-> (Add)
+A -up-> (Remove)
+A -up-> (Delete)
+A -up-> (New)
+
+Lo <|-- Search : "Requires"
+Lo <|-- Borrow : "Requires"
+Lo <|-- Return : "Requires"
+Lo <|-- Add : "Requires"
+Add <|-- Remove : "Requires"
+Lo <|-- Remove : "Requires"
+Lo <|-- New : "Requires"
+Lo <|-- Delete : "Requires"
+New <|-- Delete : "Requires"
+@enduml
