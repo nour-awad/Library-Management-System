@@ -40,8 +40,8 @@ LibraryManagementSystem/
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-repo/library-management-system.git
-   cd library-management-system
+   git clone https://github.com/nour-awad/Library-Management-System.git
+   cd Library-Management-System
    ```
 
 2. **Set Up the Environment:**
