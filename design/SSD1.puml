@@ -1,0 +1,25 @@
+@startuml
+title "Borrow a book"
+actor User
+entity "Library System" as Library
+entity "Book Database" as BookDB
+
+User -> Library : Log In (username, password)
+Library -> Library : Validate Credentials
+Library --> User : Return JWT Token
+
+User -> Library : Search Book (book title)
+Library -> BookDB : Query Book (book title)
+BookDB --> Library : Return Book Details (availability)
+
+alt Book Available
+    Library -> User : Display Book Details
+    User -> Library : Borrow Book
+    Library -> BookDB : Update Inventory (decrease stock)
+    BookDB --> Library : Confirm Update
+    Library --> User : Book Borrowed Successfully
+else Book Not Available
+    Library --> User : Display "Not Available"
+end
+
+@enduml

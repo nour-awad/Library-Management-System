@@ -1,0 +1,89 @@
+@startuml
+class User {
+    - userId: int
+    - name: string
+    - email: string
+    - password: string
+    - phoneNumber: string
+
+}
+
+class Admin {
+    - adminId: int
+    - name: string
+    - email: string
+
+}
+
+class Book {
+    - bookId: int
+    - title: string
+    - author: string
+    - genre: string
+    - availabilityStatus: boolean
+    - dueDate: string
+
+}
+
+class Catalog {
+    - catalogId: int
+    - catalogName: string
+
+}
+
+class BorrowingRecord {
+    - recordId: int
+    - borrowDate: string
+    - dueDate: string
+
+}
+
+class Payment {
+    - paymentId: int
+    - amount: float
+    - paymentDate: string
+
+}
+
+class Reservation {
+    - reservationId: int
+    - userId: int
+    - bookId: int
+    - reservationDate: string
+    - status: string
+
+}
+
+class Notification {
+    - notificationId: int
+    - message: string
+    - sendDate: string
+    - status: string
+    }
+
+class BookCategory {
+    - categoryId: int
+    - categoryName: string
+
+}
+
+class LibraryBranch {
+    - branchId: int
+    - branchName: string
+    - location: string
+
+}
+
+User "1" -- "0..*" BorrowingRecord : "Borrows"
+Admin "1" -- "0..*" Book : "Manages"
+Book "1" -- "0..*" BorrowingRecord : "Has"
+Catalog "1" -- "0..*" Book : "Contains"
+User "1" -- "0..*" Reservation : "Makes"
+Reservation "1" -- "1" Book : "Reserves"
+BookCategory "1" -- "0..*" Book : "Categorizes"
+LibraryBranch "1" -- "0..*" Book : "Has"
+User "1" -- "0..*" Payment : "Makes"
+Payment "1" -- "0..*" BorrowingRecord : "PaysFor"
+Notification "1" -- "0..*" User : "Notifies"
+
+@enduml

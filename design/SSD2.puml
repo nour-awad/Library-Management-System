@@ -1,0 +1,21 @@
+@startuml
+title "Return a book"
+actor User
+entity "Library System" as Library
+entity "Book Database" as BookDB
+
+User -> Library : Log In (username, password)
+Library -> Library : Validate Credentials
+Library --> User : Return JWT Token
+
+User -> Library : View Borrowed Books
+Library -> BookDB : Query Borrowed Books (user ID)
+BookDB --> Library : Return Borrowed Books List
+
+User -> Library : Select Book to Return (book ID)
+Library -> BookDB : Update Book Status (returned)
+BookDB --> Library : Confirm Book Return
+
+Library --> User : Display "Return Successful" (due date cleared)
+
+@enduml
