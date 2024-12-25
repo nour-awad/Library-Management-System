@@ -1,0 +1,16 @@
+@startuml
+actor Member
+participant LibrarySystem
+participant BookDatabase
+participant TransactionManager
+
+Member -> LibrarySystem: searchBook(title/author/genre)
+LibrarySystem -> BookDatabase: queryBooks(title/author/genre)
+BookDatabase -> LibrarySystem: availableBooks
+
+Member -> LibrarySystem: borrowBook(bookID)
+LibrarySystem -> BookDatabase: checkBookAvailability(bookID)
+LibrarySystem -> TransactionManager: createTransaction(memberID, bookID)
+TransactionManager -> BookDatabase: markBookAsBorrowed(bookID)
+LibrarySystem -> Member: Borrow Successful/Failed
+@enduml
