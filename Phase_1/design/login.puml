@@ -1,0 +1,10 @@
+@startuml
+actor User
+participant LibrarySystem
+participant UserDatabase
+
+User -> LibrarySystem: login(username, password)
+LibrarySystem -> UserDatabase: validateCredentials(username, password)
+UserDatabase -> LibrarySystem: isValid (true/false)
+LibrarySystem -> User: Login Successful/Failed
+@enduml
