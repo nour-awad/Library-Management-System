@@ -49,7 +49,6 @@ class Catalog {
 }
 
 Catalog o-- Book
-
 ' Transactions and Notifications
 class Transaction {
   - transactionID: int
