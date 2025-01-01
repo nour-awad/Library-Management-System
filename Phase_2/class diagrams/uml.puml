@@ -11,25 +11,6 @@ class User {
   + logout(): void
 }
 
-class Admin {
-  + createUser(user: User): void
-  + updateUser(userID: int): void
-  + deleteUser(userID: int): void
-  + addBook(book: Book): void
-  + updateBook(bookID: int): void
-  + removeBook(bookID: int): void
-}
-
-class Member {
-  - borrowedBooks: List<Book>
-  + searchBooks(title: String): List<Book>
-  + borrowBook(bookID: int): void
-  + returnBook(bookID: int): void
-  + viewProfile(): void
-}
-
-User <|-- Admin
-User <|-- Member
 
 ' Book and Catalog classes
 class Book {
@@ -41,14 +22,6 @@ class Book {
   + getDetails(): String
 }
 
-class Catalog {
-  - books: List<Book>
-  + searchByTitle(title: String): List<Book>
-  + searchByAuthor(author: String): List<Book>
-  + searchByGenre(genre: String): List<Book>
-}
-
-Catalog o-- Book
 ' Transactions and Notifications
 class Transaction {
   - transactionID: int
@@ -61,20 +34,9 @@ class Transaction {
   + closeTransaction(transactionID: int): void
 }
 
-class Notification {
-  - notificationID: int
-  - message: String
-  - userID: int
-  + sendNotification(userID: int, message: String): void
-}
-
-Member --> Transaction
-Member --> Notification
 
 ' Relationships and multiplicities
-Admin "1" o-- "0..*" Transaction : manages
-Member "1" --> "0..*" Book : borrows
+User "1" --> "0..*" Book : borrows
 Book "1" --> "0..1" Transaction : belongs to
-Transaction "1" --> "1" Notification : triggers
 
 @enduml
